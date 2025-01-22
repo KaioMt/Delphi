@@ -1,0 +1,40 @@
+unit Relatorio_pix;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+  FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait,
+  FireDAC.Phys.IBBase, Data.DB, FireDAC.Comp.Client, FireDAC.Comp.UI,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet;
+
+type
+  TForm1 = class(TForm)
+    Ed_datainicio: TEdit;
+    Edt_DataFim: TEdit;
+    Label1: TLabel;
+    Lb_titulo: TLabel;
+    Label2: TLabel;
+    Button1: TButton;
+    FDConnection: TFDConnection;
+    FDPhysFBDriverLink1: TFDPhysFBDriverLink;
+    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    QryBancos: TFDQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+end.

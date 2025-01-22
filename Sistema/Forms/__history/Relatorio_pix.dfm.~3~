@@ -1,0 +1,456 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 652
+  ClientWidth = 1037
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OldCreateOrder = True
+  PixelsPerInch = 96
+  TextHeight = 15
+  object Label1: TLabel
+    Left = 376
+    Top = 80
+    Width = 3
+    Height = 15
+  end
+  object Lb_titulo: TLabel
+    Left = 240
+    Top = 40
+    Width = 331
+    Height = 70
+    Caption = 'Alterar a data de fechamento '#13#10'das Ordens de Servi'#231'os'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -25
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 328
+    Top = 136
+    Width = 143
+    Height = 23
+    Caption = 'Coloque o periodo'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Ed_datainicio: TEdit
+    Left = 224
+    Top = 176
+    Width = 121
+    Height = 23
+    TabOrder = 0
+    Text = 'Data de inicio'
+  end
+  object Edt_DataFim: TEdit
+    Left = 434
+    Top = 176
+    Width = 121
+    Height = 23
+    TabOrder = 1
+    Text = 'Data fim'
+  end
+  object btn_buscar: TButton
+    Left = 624
+    Top = 171
+    Width = 91
+    Height = 33
+    Caption = 'Buscar'
+    TabOrder = 2
+  end
+  object StringGrid1: TStringGrid
+    Left = 224
+    Top = 224
+    Width = 491
+    Height = 257
+    TabOrder = 3
+  end
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'Database=C:\Sistema\Exe\BD\BASE.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'Port=3060'
+      'DriverID=FB')
+    Connected = True
+    LoginPrompt = False
+    Left = 720
+    Top = 80
+  end
+  object Qry_OS: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'Select * from c000051'
+      'where codigo is null')
+    Left = 800
+    Top = 80
+    object Qry_OSCODIGO: TStringField
+      FieldName = 'CODIGO'
+      Origin = 'CODIGO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 6
+    end
+    object Qry_OSDATA: TSQLTimeStampField
+      FieldName = 'DATA'
+      Origin = '"DATA"'
+    end
+    object Qry_OSCODATENDENTE: TStringField
+      FieldName = 'CODATENDENTE'
+      Origin = 'CODATENDENTE'
+      Size = 6
+    end
+    object Qry_OSTIPO: TStringField
+      FieldName = 'TIPO'
+      Origin = 'TIPO'
+      Size = 7
+    end
+    object Qry_OSCODCLIENTE: TStringField
+      FieldName = 'CODCLIENTE'
+      Origin = 'CODCLIENTE'
+      Size = 6
+    end
+    object Qry_OSSOLICITANTE: TStringField
+      FieldName = 'SOLICITANTE'
+      Origin = 'SOLICITANTE'
+      Size = 30
+    end
+    object Qry_OSMARCA: TStringField
+      FieldName = 'MARCA'
+      Origin = 'MARCA'
+      Size = 30
+    end
+    object Qry_OSMODELO: TStringField
+      FieldName = 'MODELO'
+      Origin = 'MODELO'
+      Size = 30
+    end
+    object Qry_OSSERIAL: TStringField
+      FieldName = 'SERIAL'
+      Origin = 'SERIAL'
+      Size = 30
+    end
+    object Qry_OSATENDIMENTO: TStringField
+      FieldName = 'ATENDIMENTO'
+      Origin = 'ATENDIMENTO'
+      Size = 25
+    end
+    object Qry_OSDEFEITO: TBlobField
+      FieldName = 'DEFEITO'
+      Origin = 'DEFEITO'
+    end
+    object Qry_OSOBS: TBlobField
+      FieldName = 'OBS'
+      Origin = 'OBS'
+    end
+    object Qry_OSDETECTADO: TBlobField
+      FieldName = 'DETECTADO'
+      Origin = 'DETECTADO'
+    end
+    object Qry_OSDETECTADO_DATA: TSQLTimeStampField
+      FieldName = 'DETECTADO_DATA'
+      Origin = 'DETECTADO_DATA'
+    end
+    object Qry_OSDETECTADO_CODTECNICO: TStringField
+      FieldName = 'DETECTADO_CODTECNICO'
+      Origin = 'DETECTADO_CODTECNICO'
+      Size = 6
+    end
+    object Qry_OSSITUACAO: TStringField
+      FieldName = 'SITUACAO'
+      Origin = 'SITUACAO'
+      Size = 35
+    end
+    object Qry_OSCONCLUSAO_DATA: TSQLTimeStampField
+      FieldName = 'CONCLUSAO_DATA'
+      Origin = 'CONCLUSAO_DATA'
+    end
+    object Qry_OSCONCLUSAO_ENTREGUE: TSQLTimeStampField
+      FieldName = 'CONCLUSAO_ENTREGUE'
+      Origin = 'CONCLUSAO_ENTREGUE'
+    end
+    object Qry_OSRETIRADO_POR: TStringField
+      FieldName = 'RETIRADO_POR'
+      Origin = 'RETIRADO_POR'
+      Size = 30
+    end
+    object Qry_OSSERVICO_SUBTOTAL: TFloatField
+      FieldName = 'SERVICO_SUBTOTAL'
+      Origin = 'SERVICO_SUBTOTAL'
+    end
+    object Qry_OSSERVICO_DESCONTO: TFloatField
+      FieldName = 'SERVICO_DESCONTO'
+      Origin = 'SERVICO_DESCONTO'
+    end
+    object Qry_OSSERVICO_TOTAL: TFloatField
+      FieldName = 'SERVICO_TOTAL'
+      Origin = 'SERVICO_TOTAL'
+    end
+    object Qry_OSPRODUTO_SUBTOTAL: TFloatField
+      FieldName = 'PRODUTO_SUBTOTAL'
+      Origin = 'PRODUTO_SUBTOTAL'
+    end
+    object Qry_OSPRODUTO_DESCONTO: TFloatField
+      FieldName = 'PRODUTO_DESCONTO'
+      Origin = 'PRODUTO_DESCONTO'
+    end
+    object Qry_OSPRODUTO_TOTAL: TFloatField
+      FieldName = 'PRODUTO_TOTAL'
+      Origin = 'PRODUTO_TOTAL'
+    end
+    object Qry_OSCODVEICULO: TStringField
+      FieldName = 'CODVEICULO'
+      Origin = 'CODVEICULO'
+      Size = 6
+    end
+    object Qry_OSKM_INICIAL: TIntegerField
+      FieldName = 'KM_INICIAL'
+      Origin = 'KM_INICIAL'
+    end
+    object Qry_OSKM_FINAL: TIntegerField
+      FieldName = 'KM_FINAL'
+      Origin = 'KM_FINAL'
+    end
+    object Qry_OSDESLOC_COMBUSTIVEL: TFloatField
+      FieldName = 'DESLOC_COMBUSTIVEL'
+      Origin = 'DESLOC_COMBUSTIVEL'
+    end
+    object Qry_OSDESLOC_REFEICAO: TFloatField
+      FieldName = 'DESLOC_REFEICAO'
+      Origin = 'DESLOC_REFEICAO'
+    end
+    object Qry_OSDESLOC_HOSPEDAGEM: TFloatField
+      FieldName = 'DESLOC_HOSPEDAGEM'
+      Origin = 'DESLOC_HOSPEDAGEM'
+    end
+    object Qry_OSDESLOC_TOTAL: TFloatField
+      FieldName = 'DESLOC_TOTAL'
+      Origin = 'DESLOC_TOTAL'
+    end
+    object Qry_OSCODTERCEIRO: TStringField
+      FieldName = 'CODTERCEIRO'
+      Origin = 'CODTERCEIRO'
+      Size = 6
+    end
+    object Qry_OSTERCEIRO_CONTATO: TStringField
+      FieldName = 'TERCEIRO_CONTATO'
+      Origin = 'TERCEIRO_CONTATO'
+      Size = 30
+    end
+    object Qry_OSTERCEIRO_VALOR: TFloatField
+      FieldName = 'TERCEIRO_VALOR'
+      Origin = 'TERCEIRO_VALOR'
+    end
+    object Qry_OSTERCEIRO_COMISSAO: TFloatField
+      FieldName = 'TERCEIRO_COMISSAO'
+      Origin = 'TERCEIRO_COMISSAO'
+    end
+    object Qry_OSTERCEIRO_TOTAL: TFloatField
+      FieldName = 'TERCEIRO_TOTAL'
+      Origin = 'TERCEIRO_TOTAL'
+    end
+    object Qry_OSTERCEIRO_OBS: TBlobField
+      FieldName = 'TERCEIRO_OBS'
+      Origin = 'TERCEIRO_OBS'
+    end
+    object Qry_OSSUBTOTAL: TFloatField
+      FieldName = 'SUBTOTAL'
+      Origin = 'SUBTOTAL'
+    end
+    object Qry_OSDESCONTO: TFloatField
+      FieldName = 'DESCONTO'
+      Origin = 'DESCONTO'
+    end
+    object Qry_OSACRESCIMO: TFloatField
+      FieldName = 'ACRESCIMO'
+      Origin = 'ACRESCIMO'
+    end
+    object Qry_OSTOTAL: TFloatField
+      FieldName = 'TOTAL'
+      Origin = 'TOTAL'
+    end
+    object Qry_OSMEIO_DINHEIRO: TFloatField
+      FieldName = 'MEIO_DINHEIRO'
+      Origin = 'MEIO_DINHEIRO'
+    end
+    object Qry_OSMEIO_CHEQUEAV: TFloatField
+      FieldName = 'MEIO_CHEQUEAV'
+      Origin = 'MEIO_CHEQUEAV'
+    end
+    object Qry_OSMEIO_CHEQUEAP: TFloatField
+      FieldName = 'MEIO_CHEQUEAP'
+      Origin = 'MEIO_CHEQUEAP'
+    end
+    object Qry_OSMEIO_CARTAOCRED: TFloatField
+      FieldName = 'MEIO_CARTAOCRED'
+      Origin = 'MEIO_CARTAOCRED'
+    end
+    object Qry_OSMEIO_CARTAODEB: TFloatField
+      FieldName = 'MEIO_CARTAODEB'
+      Origin = 'MEIO_CARTAODEB'
+    end
+    object Qry_OSMEIO_CREDIARIO: TFloatField
+      FieldName = 'MEIO_CREDIARIO'
+      Origin = 'MEIO_CREDIARIO'
+    end
+    object Qry_OSCODSETOR: TStringField
+      FieldName = 'CODSETOR'
+      Origin = 'CODSETOR'
+      Size = 6
+    end
+    object Qry_OSCUPOMFISCAL: TIntegerField
+      FieldName = 'CUPOMFISCAL'
+      Origin = 'CUPOMFISCAL'
+    end
+    object Qry_OSST: TIntegerField
+      FieldName = 'ST'
+      Origin = 'ST'
+    end
+    object Qry_OSCHASSI: TStringField
+      FieldName = 'CHASSI'
+      Origin = 'CHASSI'
+      Size = 40
+    end
+    object Qry_OSCOR: TStringField
+      FieldName = 'COR'
+      Origin = 'COR'
+      Size = 10
+    end
+    object Qry_OSCOMBUSTIVEL: TStringField
+      FieldName = 'COMBUSTIVEL'
+      Origin = 'COMBUSTIVEL'
+      Size = 10
+    end
+    object Qry_OSCOMBUSTIVEL_NIVEL: TFloatField
+      FieldName = 'COMBUSTIVEL_NIVEL'
+      Origin = 'COMBUSTIVEL_NIVEL'
+    end
+    object Qry_OSNUMERO_CUPOM_FISCAL: TIntegerField
+      FieldName = 'NUMERO_CUPOM_FISCAL'
+      Origin = 'NUMERO_CUPOM_FISCAL'
+    end
+    object Qry_OSCODCAIXA: TStringField
+      FieldName = 'CODCAIXA'
+      Origin = 'CODCAIXA'
+      Size = 6
+    end
+    object Qry_OSDETECTADO_HORA: TStringField
+      FieldName = 'DETECTADO_HORA'
+      Origin = 'DETECTADO_HORA'
+      Size = 5
+    end
+    object Qry_OSHORA: TStringField
+      FieldName = 'HORA'
+      Origin = 'HORA'
+      Size = 5
+    end
+    object Qry_OSINTERVENCOES: TBlobField
+      FieldName = 'INTERVENCOES'
+      Origin = 'INTERVENCOES'
+    end
+    object Qry_OSDAV: TStringField
+      FieldName = 'DAV'
+      Origin = 'DAV'
+      Size = 10
+    end
+    object Qry_OSDAV_IMPRESSO: TIntegerField
+      FieldName = 'DAV_IMPRESSO'
+      Origin = 'DAV_IMPRESSO'
+    end
+    object Qry_OSDAV_ATUAL: TStringField
+      FieldName = 'DAV_ATUAL'
+      Origin = 'DAV_ATUAL'
+      Size = 15
+    end
+    object Qry_OSCODMARCA: TStringField
+      FieldName = 'CODMARCA'
+      Origin = 'CODMARCA'
+      FixedChar = True
+      Size = 6
+    end
+    object Qry_OSEMDICAO: TStringField
+      FieldName = 'EMDICAO'
+      Origin = 'EMDICAO'
+      Size = 1
+    end
+    object Qry_OSUSUARIOFECHAMENTO: TStringField
+      FieldName = 'USUARIOFECHAMENTO'
+      Origin = 'USUARIOFECHAMENTO'
+      Size = 25
+    end
+    object Qry_OSEMAILCLIENTE: TStringField
+      FieldName = 'EMAILCLIENTE'
+      Origin = 'EMAILCLIENTE'
+      Size = 50
+    end
+    object Qry_OSFORMAPAGTO: TStringField
+      FieldName = 'FORMAPAGTO'
+      Origin = 'FORMAPAGTO'
+      Size = 30
+    end
+    object Qry_OSCODFUNCALIBDIANTEIRA: TStringField
+      FieldName = 'CODFUNCALIBDIANTEIRA'
+      Origin = 'CODFUNCALIBDIANTEIRA'
+      FixedChar = True
+      Size = 6
+    end
+    object Qry_OSCODFUNCALIBTRASEIRA: TStringField
+      FieldName = 'CODFUNCALIBTRASEIRA'
+      Origin = 'CODFUNCALIBTRASEIRA'
+      FixedChar = True
+      Size = 6
+    end
+    object Qry_OSCODFUNAPRODAS: TStringField
+      FieldName = 'CODFUNAPRODAS'
+      Origin = 'CODFUNAPRODAS'
+      FixedChar = True
+      Size = 6
+    end
+    object Qry_OSTROCO_CREDITO: TFloatField
+      FieldName = 'TROCO_CREDITO'
+      Origin = 'TROCO_CREDITO'
+    end
+    object Qry_OSNOMECLIENTE: TStringField
+      FieldName = 'NOMECLIENTE'
+      Origin = 'NOMECLIENTE'
+      Size = 60
+    end
+    object Qry_OSTELEFONECLIENTE: TStringField
+      FieldName = 'TELEFONECLIENTE'
+      Origin = 'TELEFONECLIENTE'
+      Size = 30
+    end
+    object Qry_OSCONTATOCLIENTE: TStringField
+      FieldName = 'CONTATOCLIENTE'
+      Origin = 'CONTATOCLIENTE'
+      Size = 45
+    end
+    object Qry_OSMEDIAKMMES: TSmallintField
+      FieldName = 'MEDIAKMMES'
+      Origin = 'MEDIAKMMES'
+    end
+    object Qry_OSMEIO_CONVENIO: TFloatField
+      FieldName = 'MEIO_CONVENIO'
+      Origin = 'MEIO_CONVENIO'
+    end
+    object Qry_OSCUSTOTOTAL: TFloatField
+      FieldName = 'CUSTOTOTAL'
+      Origin = 'CUSTOTOTAL'
+    end
+    object Qry_OSDESCONTOPREVIOP: TCurrencyField
+      FieldName = 'DESCONTOPREVIOP'
+      Origin = 'DESCONTOPREVIOP'
+    end
+  end
+end

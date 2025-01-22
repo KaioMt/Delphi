@@ -1,0 +1,96 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 652
+  ClientWidth = 1037
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  TextHeight = 15
+  object Label1: TLabel
+    Left = 376
+    Top = 80
+    Width = 3
+    Height = 15
+  end
+  object Lb_titulo: TLabel
+    Left = 192
+    Top = 64
+    Width = 289
+    Height = 35
+    Caption = 'Relat'#243'rio de pix recebidos'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -25
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 264
+    Top = 176
+    Width = 143
+    Height = 23
+    Caption = 'Coloque o periodo'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Ed_datainicio: TEdit
+    Left = 168
+    Top = 224
+    Width = 121
+    Height = 23
+    TabOrder = 0
+    Text = 'Data de inicio'
+  end
+  object Edt_DataFim: TEdit
+    Left = 376
+    Top = 224
+    Width = 121
+    Height = 23
+    TabOrder = 1
+    Text = 'Data fim'
+  end
+  object Button1: TButton
+    Left = 288
+    Top = 272
+    Width = 91
+    Height = 33
+    Caption = 'Tirar relat'#243'rio'
+    TabOrder = 2
+  end
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'Database=C:\Sistema\Exe\BD\BASE.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'Port=3060'
+      'DriverID=FB')
+    LoginPrompt = False
+    Left = 504
+    Top = 352
+  end
+  object FDPhysFBDriverLink1: TFDPhysFBDriverLink
+    VendorLib = 'C:\Program Files (x86)\Firebird\Firebird_3_0\fbclient.dll'
+    Left = 616
+    Top = 352
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 504
+    Top = 416
+  end
+  object QryBancos: TFDQuery
+    Connection = FDConnection
+    Left = 616
+    Top = 416
+  end
+end

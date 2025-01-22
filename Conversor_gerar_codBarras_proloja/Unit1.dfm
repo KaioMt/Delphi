@@ -2,8 +2,8 @@ object Conversor: TConversor
   Left = 0
   Top = 0
   Caption = 'Conversor'
-  ClientHeight = 209
-  ClientWidth = 737
+  ClientHeight = 320
+  ClientWidth = 787
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,43 +15,45 @@ object Conversor: TConversor
   TextHeight = 13
   object Button1: TButton
     Left = 0
-    Top = 152
-    Width = 737
+    Top = 263
+    Width = 787
     Height = 40
     Align = alBottom
     Caption = 'Gerar codigos de barras'
     TabOrder = 0
     OnClick = Button1Click
-    ExplicitLeft = 96
-    ExplicitTop = 257
-    ExplicitWidth = 113
+    ExplicitTop = 152
+    ExplicitWidth = 737
   end
   object ProgressBar1: TProgressBar
     Left = 0
-    Top = 192
-    Width = 737
+    Top = 303
+    Width = 787
     Height = 17
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 407
+    ExplicitTop = 192
+    ExplicitWidth = 737
   end
   object Memo1: TMemo
     Left = 0
     Top = 17
-    Width = 737
+    Width = 787
     Height = 135
     Align = alTop
     TabOrder = 2
-    ExplicitTop = 41
+    ExplicitLeft = 32
+    ExplicitTop = 73
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 737
+    Width = 787
     Height = 17
     Align = alTop
     Caption = 'ERROS:'
     TabOrder = 3
+    ExplicitWidth = 737
   end
   object FDConnection1: TFDConnection
     Params.Strings = (

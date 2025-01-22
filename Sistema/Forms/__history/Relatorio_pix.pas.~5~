@@ -1,0 +1,123 @@
+unit Relatorio_pix;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+  FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait,
+  FireDAC.Phys.IBBase, Data.DB, FireDAC.Comp.Client, FireDAC.Comp.UI,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.DBCtrls,
+  Datasnap.DBClient, Datasnap.Provider;
+
+type
+  TForm1 = class(TForm)
+    Ed_datainicio: TEdit;
+    Edt_DataFim: TEdit;
+    Label1: TLabel;
+    Lb_titulo: TLabel;
+    Label2: TLabel;
+    btn_buscar: TButton;
+    Qry_OS: TFDQuery;
+    Qry_OSCODIGO: TStringField;
+    Qry_OSDATA: TSQLTimeStampField;
+    Qry_OSCODATENDENTE: TStringField;
+    Qry_OSTIPO: TStringField;
+    Qry_OSCODCLIENTE: TStringField;
+    Qry_OSSOLICITANTE: TStringField;
+    Qry_OSMARCA: TStringField;
+    Qry_OSMODELO: TStringField;
+    Qry_OSSERIAL: TStringField;
+    Qry_OSATENDIMENTO: TStringField;
+    Qry_OSDEFEITO: TBlobField;
+    Qry_OSOBS: TBlobField;
+    Qry_OSDETECTADO: TBlobField;
+    Qry_OSDETECTADO_DATA: TSQLTimeStampField;
+    Qry_OSDETECTADO_CODTECNICO: TStringField;
+    Qry_OSSITUACAO: TStringField;
+    Qry_OSCONCLUSAO_DATA: TSQLTimeStampField;
+    Qry_OSCONCLUSAO_ENTREGUE: TSQLTimeStampField;
+    Qry_OSRETIRADO_POR: TStringField;
+    Qry_OSSERVICO_SUBTOTAL: TFloatField;
+    Qry_OSSERVICO_DESCONTO: TFloatField;
+    Qry_OSSERVICO_TOTAL: TFloatField;
+    Qry_OSPRODUTO_SUBTOTAL: TFloatField;
+    Qry_OSPRODUTO_DESCONTO: TFloatField;
+    Qry_OSPRODUTO_TOTAL: TFloatField;
+    Qry_OSCODVEICULO: TStringField;
+    Qry_OSKM_INICIAL: TIntegerField;
+    Qry_OSKM_FINAL: TIntegerField;
+    Qry_OSDESLOC_COMBUSTIVEL: TFloatField;
+    Qry_OSDESLOC_REFEICAO: TFloatField;
+    Qry_OSDESLOC_HOSPEDAGEM: TFloatField;
+    Qry_OSDESLOC_TOTAL: TFloatField;
+    Qry_OSCODTERCEIRO: TStringField;
+    Qry_OSTERCEIRO_CONTATO: TStringField;
+    Qry_OSTERCEIRO_VALOR: TFloatField;
+    Qry_OSTERCEIRO_COMISSAO: TFloatField;
+    Qry_OSTERCEIRO_TOTAL: TFloatField;
+    Qry_OSTERCEIRO_OBS: TBlobField;
+    Qry_OSSUBTOTAL: TFloatField;
+    Qry_OSDESCONTO: TFloatField;
+    Qry_OSACRESCIMO: TFloatField;
+    Qry_OSTOTAL: TFloatField;
+    Qry_OSMEIO_DINHEIRO: TFloatField;
+    Qry_OSMEIO_CHEQUEAV: TFloatField;
+    Qry_OSMEIO_CHEQUEAP: TFloatField;
+    Qry_OSMEIO_CARTAOCRED: TFloatField;
+    Qry_OSMEIO_CARTAODEB: TFloatField;
+    Qry_OSMEIO_CREDIARIO: TFloatField;
+    Qry_OSCODSETOR: TStringField;
+    Qry_OSCUPOMFISCAL: TIntegerField;
+    Qry_OSST: TIntegerField;
+    Qry_OSCHASSI: TStringField;
+    Qry_OSCOR: TStringField;
+    Qry_OSCOMBUSTIVEL: TStringField;
+    Qry_OSCOMBUSTIVEL_NIVEL: TFloatField;
+    Qry_OSNUMERO_CUPOM_FISCAL: TIntegerField;
+    Qry_OSCODCAIXA: TStringField;
+    Qry_OSDETECTADO_HORA: TStringField;
+    Qry_OSHORA: TStringField;
+    Qry_OSINTERVENCOES: TBlobField;
+    Qry_OSDAV: TStringField;
+    Qry_OSDAV_IMPRESSO: TIntegerField;
+    Qry_OSDAV_ATUAL: TStringField;
+    Qry_OSCODMARCA: TStringField;
+    Qry_OSEMDICAO: TStringField;
+    Qry_OSUSUARIOFECHAMENTO: TStringField;
+    Qry_OSEMAILCLIENTE: TStringField;
+    Qry_OSFORMAPAGTO: TStringField;
+    Qry_OSCODFUNCALIBDIANTEIRA: TStringField;
+    Qry_OSCODFUNCALIBTRASEIRA: TStringField;
+    Qry_OSCODFUNAPRODAS: TStringField;
+    Qry_OSTROCO_CREDITO: TFloatField;
+    Qry_OSNOMECLIENTE: TStringField;
+    Qry_OSTELEFONECLIENTE: TStringField;
+    Qry_OSCONTATOCLIENTE: TStringField;
+    Qry_OSMEDIAKMMES: TSmallintField;
+    Qry_OSMEIO_CONVENIO: TFloatField;
+    Qry_OSCUSTOTOTAL: TFloatField;
+    Qry_OSDESCONTOPREVIOP: TCurrencyField;
+    Connection: TFDConnection;
+    dbgrd_OS: TDBGrid;
+    DataSource1: TDataSource;
+    DataSetProvider: TDataSetProvider;
+    ClientDataset: TClientDataSet;
+    dbnvgr1: TDBNavigator;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+end.
