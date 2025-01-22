@@ -1,0 +1,79 @@
+unit Relatorio_pix;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+  FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait,
+  FireDAC.Phys.IBBase, Data.DB, FireDAC.Comp.Client, FireDAC.Comp.UI,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.DBCtrls,
+  Datasnap.DBClient, Datasnap.Provider, Vcl.ComCtrls, dateUtils;
+
+type
+  TForm1 = class(TForm)
+    Label1: TLabel;
+    Lb_titulo: TLabel;
+    Label2: TLabel;
+    btnBuscar: TButton;
+    Qry_OS: TFDQuery;
+    Connection: TFDConnection;
+    dbgrd_OS: TDBGrid;
+    DataSource1: TDataSource;
+    dbnvgr1: TDBNavigator;
+    Qry_OSNUMERO_OS: TStringField;
+    Qry_OSMARCA: TStringField;
+    Qry_OSMODELO: TStringField;
+    Qry_OSSERIAL: TStringField;
+    Qry_OSCONCLUSAO_DATA: TSQLTimeStampField;
+    Qry_OSCONCLUSAO_ENTREGUE: TSQLTimeStampField;
+    dtEdInicio: TDateTimePicker;
+    dtEdFim: TDateTimePicker;
+    pnCabecalho: TPanel;
+    procedure FormShow(Sender: TObject);
+    procedure btnBuscarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btnBuscarClick(Sender: TObject);
+begin
+//  if dtEdInicio.DateTime <= dtEdFim.DateTime then
+//  begin
+//    ShowMessage('estou buscando os registros no banco.');
+//  end
+//  else
+//  begin
+//    ShowMessage('Data inicial maior que a data final.');
+//    dtEdInicio.SetFocus;
+//  end;
+
+  if dtEdInicio.DateTime > dtEdFim.DateTime then
+  begin
+    dtEdInicio.SetFocus;
+    raise exception.create('Data inicial maior que a data final.');
+  end;
+
+  MessageDlg('estou buscando os registros no banco.', mtInformation, [mbOK], 0);
+
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+    dtEdInicio.Date := Today;
+    dtEdFim.Date := Today;
+end;
+
+end.

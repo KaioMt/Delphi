@@ -1,0 +1,178 @@
+unit Relatorio_pix;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+  FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait,
+  FireDAC.Phys.IBBase, Data.DB, FireDAC.Comp.Client, FireDAC.Comp.UI,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.DBCtrls,
+  Datasnap.DBClient, Datasnap.Provider, Vcl.ComCtrls, dateUtils;
+
+type
+  TForm1 = class(TForm)
+    Label1: TLabel;
+    Lb_titulo: TLabel;
+    Label2: TLabel;
+    btnBuscar: TButton;
+    qrOs: TFDQuery;
+    Connection: TFDConnection;
+    dbgrd_OS: TDBGrid;
+    dsOs: TDataSource;
+    dbnvgr1: TDBNavigator;
+    dtEdInicio: TDateTimePicker;
+    dtEdFim: TDateTimePicker;
+    pnCabecalho: TPanel;
+    qrOsCODIGO: TStringField;
+    qrOsDATA: TSQLTimeStampField;
+    qrOsCODATENDENTE: TStringField;
+    qrOsTIPO: TStringField;
+    qrOsCODCLIENTE: TStringField;
+    qrOsSOLICITANTE: TStringField;
+    qrOsMARCA: TStringField;
+    qrOsMODELO: TStringField;
+    qrOsSERIAL: TStringField;
+    qrOsATENDIMENTO: TStringField;
+    qrOsDEFEITO: TBlobField;
+    qrOsOBS: TBlobField;
+    qrOsDETECTADO: TBlobField;
+    qrOsDETECTADO_DATA: TSQLTimeStampField;
+    qrOsDETECTADO_CODTECNICO: TStringField;
+    qrOsSITUACAO: TStringField;
+    qrOsCONCLUSAO_DATA: TSQLTimeStampField;
+    qrOsCONCLUSAO_ENTREGUE: TSQLTimeStampField;
+    qrOsRETIRADO_POR: TStringField;
+    qrOsSERVICO_SUBTOTAL: TFloatField;
+    qrOsSERVICO_DESCONTO: TFloatField;
+    qrOsSERVICO_TOTAL: TFloatField;
+    qrOsPRODUTO_SUBTOTAL: TFloatField;
+    qrOsPRODUTO_DESCONTO: TFloatField;
+    qrOsPRODUTO_TOTAL: TFloatField;
+    qrOsCODVEICULO: TStringField;
+    qrOsKM_INICIAL: TIntegerField;
+    qrOsKM_FINAL: TIntegerField;
+    qrOsDESLOC_COMBUSTIVEL: TFloatField;
+    qrOsDESLOC_REFEICAO: TFloatField;
+    qrOsDESLOC_HOSPEDAGEM: TFloatField;
+    qrOsDESLOC_TOTAL: TFloatField;
+    qrOsCODTERCEIRO: TStringField;
+    qrOsTERCEIRO_CONTATO: TStringField;
+    qrOsTERCEIRO_VALOR: TFloatField;
+    qrOsTERCEIRO_COMISSAO: TFloatField;
+    qrOsTERCEIRO_TOTAL: TFloatField;
+    qrOsTERCEIRO_OBS: TBlobField;
+    qrOsSUBTOTAL: TFloatField;
+    qrOsDESCONTO: TFloatField;
+    qrOsACRESCIMO: TFloatField;
+    qrOsTOTAL: TFloatField;
+    qrOsMEIO_DINHEIRO: TFloatField;
+    qrOsMEIO_CHEQUEAV: TFloatField;
+    qrOsMEIO_CHEQUEAP: TFloatField;
+    qrOsMEIO_CARTAOCRED: TFloatField;
+    qrOsMEIO_CARTAODEB: TFloatField;
+    qrOsMEIO_CREDIARIO: TFloatField;
+    qrOsCODSETOR: TStringField;
+    qrOsCUPOMFISCAL: TIntegerField;
+    qrOsST: TIntegerField;
+    qrOsCHASSI: TStringField;
+    qrOsCOR: TStringField;
+    qrOsCOMBUSTIVEL: TStringField;
+    qrOsCOMBUSTIVEL_NIVEL: TFloatField;
+    qrOsNUMERO_CUPOM_FISCAL: TIntegerField;
+    qrOsCODCAIXA: TStringField;
+    qrOsDETECTADO_HORA: TStringField;
+    qrOsHORA: TStringField;
+    qrOsINTERVENCOES: TBlobField;
+    qrOsDAV: TStringField;
+    qrOsDAV_IMPRESSO: TIntegerField;
+    qrOsDAV_ATUAL: TStringField;
+    qrOsCODMARCA: TStringField;
+    qrOsEMDICAO: TStringField;
+    qrOsUSUARIOFECHAMENTO: TStringField;
+    qrOsEMAILCLIENTE: TStringField;
+    qrOsFORMAPAGTO: TStringField;
+    qrOsCODFUNCALIBDIANTEIRA: TStringField;
+    qrOsCODFUNCALIBTRASEIRA: TStringField;
+    qrOsCODFUNAPRODAS: TStringField;
+    qrOsTROCO_CREDITO: TFloatField;
+    qrOsNOMECLIENTE: TStringField;
+    qrOsTELEFONECLIENTE: TStringField;
+    qrOsCONTATOCLIENTE: TStringField;
+    qrOsMEDIAKMMES: TSmallintField;
+    qrOsMEIO_CONVENIO: TFloatField;
+    qrOsCUSTOTOTAL: TFloatField;
+    qrOsDESCONTOPREVIOP: TCurrencyField;
+    qrOsNOME: TStringField;
+    qrOsMECANICO: TStringField;
+    procedure FormShow(Sender: TObject);
+    procedure btnBuscarClick(Sender: TObject);
+    procedure dtEdInicioKeyPress(Sender: TObject; var Key: Char);
+    procedure dtEdFimKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btnBuscarClick(Sender: TObject);
+begin
+//  if dtEdInicio.DateTime <= dtEdFim.DateTime then
+//  begin
+//    ShowMessage('estou buscando os registros no banco.');
+//  end
+//  else
+//  begin
+//    ShowMessage('Data inicial maior que a data final.');
+//    dtEdInicio.SetFocus;
+//  end;
+
+  if dtEdInicio.DateTime > dtEdFim.DateTime then
+  begin
+    dtEdInicio.SetFocus;
+    raise exception.create('Data inicial maior que a data final.');
+  end;
+
+  with qrOs do
+  begin
+    close;
+    sql.Clear;
+    sql.Add();
+    open;
+  end;
+
+
+//  MessageDlg('estou buscando os registros no banco.', mtInformation, [mbOK], 0);
+
+end;
+
+procedure TForm1.dtEdFimKeyPress(Sender: TObject; var Key: Char);
+begin
+  if key = #13 then
+    btnBuscar.SetFocus;
+end;
+
+procedure TForm1.dtEdInicioKeyPress(Sender: TObject; var Key: Char);
+begin
+  if key = #13 then
+    dtEdFim.SetFocus;
+
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+    dtEdInicio.Date := Today;
+    dtEdFim.Date := Today;
+end;
+
+end.

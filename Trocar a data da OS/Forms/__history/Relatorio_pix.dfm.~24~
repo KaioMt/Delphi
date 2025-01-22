@@ -1,0 +1,196 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 526
+  ClientWidth = 734
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OldCreateOrder = True
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 15
+  object dbgrd_OS: TDBGrid
+    Left = 0
+    Top = 205
+    Width = 734
+    Height = 295
+    Align = alClient
+    Ctl3D = True
+    DataSource = DataSource1
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleHotTrack]
+    ParentCtl3D = False
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+  end
+  object dbnvgr1: TDBNavigator
+    Left = 0
+    Top = 500
+    Width = 734
+    Height = 26
+    DataSource = DataSource1
+    Align = alBottom
+    TabOrder = 1
+    ExplicitLeft = -24
+    ExplicitTop = 536
+    ExplicitWidth = 672
+  end
+  object pnCabecalho: TPanel
+    Left = 0
+    Top = 0
+    Width = 734
+    Height = 205
+    Align = alTop
+    TabOrder = 2
+    ExplicitLeft = -8
+    ExplicitTop = 8
+    DesignSize = (
+      734
+      205)
+    object Label1: TLabel
+      Left = 344
+      Top = 80
+      Width = 3
+      Height = 15
+    end
+    object Label2: TLabel
+      Left = 48
+      Top = 58
+      Width = 279
+      Height = 23
+      Anchors = [akTop]
+      Caption = 'Coloque o periodo que foi concluida'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -17
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      ExplicitLeft = 32
+    end
+    object Lb_titulo: TLabel
+      Left = 53
+      Top = 17
+      Width = 591
+      Height = 35
+      Anchors = [akTop]
+      Caption = 'Alterar a data de fechamento das Ordens de Servi'#231'os'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -25
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      ExplicitLeft = 24
+    end
+    object dtEdInicio: TDateTimePicker
+      Left = 110
+      Top = 117
+      Width = 160
+      Height = 23
+      Anchors = [akTop]
+      Time = 0.402276944441837300
+      TabOrder = 0
+      OnKeyPress = dtEdInicioKeyPress
+    end
+    object dtEdFim: TDateTimePicker
+      Left = 312
+      Top = 117
+      Width = 176
+      Height = 23
+      Anchors = [akTop]
+      Date = 45679.000000000000000000
+      Time = 0.402276944441837300
+      TabOrder = 1
+      OnKeyPress = dtEdFimKeyPress
+    end
+    object btnBuscar: TButton
+      Left = 1
+      Top = 171
+      Width = 732
+      Height = 33
+      Align = alBottom
+      Caption = 'Buscar'
+      TabOrder = 2
+      OnClick = btnBuscarClick
+      ExplicitLeft = 446
+      ExplicitTop = 155
+      ExplicitWidth = 91
+    end
+  end
+  object Qry_OS: TFDQuery
+    Connection = Connection
+    SQL.Strings = (
+      'select * from c000051 '
+      'where codigo is null')
+    Left = 528
+    Top = 56
+    object Qry_OSNUMERO_OS: TStringField
+      Alignment = taCenter
+      DisplayLabel = 'NUMERO OS'
+      DisplayWidth = 16
+      FieldName = 'NUMERO_OS'
+      Origin = 'CODIGO'
+      Required = True
+      Size = 6
+    end
+    object Qry_OSMARCA: TStringField
+      DisplayWidth = 23
+      FieldName = 'MARCA'
+      Origin = 'MARCA'
+      Size = 30
+    end
+    object Qry_OSMODELO: TStringField
+      DisplayWidth = 23
+      FieldName = 'MODELO'
+      Origin = 'MODELO'
+      Size = 30
+    end
+    object Qry_OSSERIAL: TStringField
+      DisplayLabel = 'PLACA'
+      DisplayWidth = 22
+      FieldName = 'SERIAL'
+      Origin = 'SERIAL'
+      Size = 30
+    end
+    object Qry_OSCONCLUSAO_DATA: TSQLTimeStampField
+      DisplayLabel = 'DATA DA CONCLUSAO'
+      DisplayWidth = 23
+      FieldName = 'CONCLUSAO_DATA'
+      Origin = 'CONCLUSAO_DATA'
+    end
+    object Qry_OSCONCLUSAO_ENTREGUE: TSQLTimeStampField
+      DisplayLabel = 'DATA DE ENTREGA'
+      DisplayWidth = 23
+      FieldName = 'CONCLUSAO_ENTREGUE'
+      Origin = 'CONCLUSAO_ENTREGUE'
+    end
+  end
+  object Connection: TFDConnection
+    Params.Strings = (
+      
+        'Database=C:\Users\Kaio\Desktop\Projetos em Delphi\Trocar a data ' +
+        'da OS\Exe\BASE.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'Port=3050'
+      'DriverID=FB')
+    Connected = True
+    LoginPrompt = False
+    Left = 472
+    Top = 56
+  end
+  object DataSource1: TDataSource
+    DataSet = Qry_OS
+    Left = 584
+    Top = 56
+  end
+end
